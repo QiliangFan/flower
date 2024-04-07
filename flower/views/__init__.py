@@ -132,5 +132,5 @@ class BaseHandler(tornado.web.RequestHandler):
 
         if not queues:
             queues = set([self.capp.conf.task_default_queue]) |\
-                {q.name for q in self.capp.conf.task_queues or [] if q.name}
+                {q for q in self.capp.conf.task_queues or [] if q}
         return sorted(queues)
