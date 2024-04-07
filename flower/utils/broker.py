@@ -75,7 +75,6 @@ class RabbitMQ(BrokerBase):
 
         if response.code == 200:
             info = json.loads(response.body.decode())
-            print(info)
             return [x for x in info if x['name'] in names]
         response.rethrow()
 
