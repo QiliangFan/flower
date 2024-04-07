@@ -28,7 +28,9 @@ class BrokerView(BaseHandler):
         try:
             queues = await broker.queues(self.get_active_queue_names())
         except Exception as e:
-            logger.error("Unable to get queues: '%s'", e)
+            import traceback
+            logger.error("Unable to get queues: '%s'", traceback.format_exception(e))
+            traceback.print_exc()
 
         self.render("broker.html",
                     broker_url=app.capp.connection().as_uri(),
